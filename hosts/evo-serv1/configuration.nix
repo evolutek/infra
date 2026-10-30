@@ -4,6 +4,7 @@
     ./disko.nix
     ./hardware.nix
     ../../modules/services/hermes.nix
+    ../../modules/services/omniroute.nix
     ../../modules/services/tailscale.nix
   ];
 
