@@ -8,13 +8,14 @@ Les serveurs de l'association Evolutek et les services qu'ils hébergent, décri
 
 | Machine | Matériel | Services | Doc |
 |---|---|---|---|
-| `evo-serv1` | Lenovo V530-15ICR, i5-9400, 8 Go | agent public (prévu) | [fiche](docs/evo-serv1.md), [installation](docs/installer-evo-serv1.md) |
+| `evo-serv1` | Lenovo V530-15ICR, i5-9400, 8 Go | OmniRoute ; agent du club (prévu) | [fiche](docs/evo-serv1.md), [installation](docs/installer-evo-serv1.md) |
 
 ## Services
 
 | Service | Machine | État | Suivi |
 |---|---|---|---|
 | Agent public du club ([Hermes Agent](https://github.com/NousResearch/hermes-agent)) | `evo-serv1` | [module](modules/services/hermes.nix) prêt, désactivé en attendant OmniRoute ([EvoluBot#9](https://github.com/evolutek/EvoluBot/issues/9)) ; choix : [ADR-0003](docs/decisions/0003-hermes-service-natif.md) | [EvoluBot](https://github.com/evolutek/EvoluBot), epic [#7](https://github.com/evolutek/EvoluBot/issues/7) |
+| Passerelle LLM ([OmniRoute](https://github.com/diegosouzapw/OmniRoute)) | `evo-serv1` | [déployée](modules/services/omniroute.nix), sans fournisseur branché ; choix : [ADR-0006](docs/decisions/0006-omniroute-podman-rootless.md) ; [administration](docs/omniroute.md) | [EvoluBot#9](https://github.com/evolutek/EvoluBot/issues/9), [#29](https://github.com/evolutek/EvoluBot/issues/29) |
 | Gestionnaire de mots de passe | hors de l'étape 1 | à choisir avec le bureau | issue #154 du vault du club (privé) |
 
 ## Organisation
