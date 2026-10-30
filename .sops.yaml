@@ -1,0 +1,9 @@
+keys:
+  - &admin1 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN0mkNXaoou77aufonQczyTjrB1vnetxvwVnlirJzdxV
+  - &evo-serv1 age1khmguhm289tt7axf07lc2rugp2wr7gnm9qrz30g8kh4zcdevn56qw504k9
+creation_rules:
+  - path_regex: ^secrets/evo-serv1\.yaml$
+    key_groups:
+      - age:
+          - *admin1
+          - *evo-serv1

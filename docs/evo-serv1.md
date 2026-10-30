@@ -38,7 +38,7 @@ Pendant l'[étape 1](etape-1-agent-public.md) :
 | Service | RAM estimée |
 |---|---|
 | Système et services de base | ~1 Go |
-| Agent public (passerelle Discord + cron) | 0,5 à 1 Go |
+| Agent public (passerelle Discord + cron), service systemd natif ([ADR-0003](decisions/0003-hermes-service-natif.md)) | 0,5 à 1 Go, plafonné à 2 Go |
 | OmniRoute, instance dédiée à l'agent | ~0,5 Go |
 
 Total : **2 à 3 Go**. Ces chiffres viennent d'estimations et sont à mesurer une fois les services en place : c'est l'un des buts de l'étape.

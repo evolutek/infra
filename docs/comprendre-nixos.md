@@ -48,17 +48,24 @@ inputs = {
     url = "github:nix-community/disko";
     inputs.nixpkgs.follows = "nixpkgs";
   };
+  sops-nix = {
+    url = "github:Mic92/sops-nix";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+  hermes-agent.url = "github:NousResearch/hermes-agent";
 };
 ```
 
-- `inputs` : les dépendances du flake. `nixos-26.05` est la branche stable de NixOS, qui reçoit les correctifs de sécurité pendant environ sept mois.
-- `follows` : disko a lui-même besoin de nixpkgs ; on lui impose le nôtre, pour n'avoir qu'une seule version de nixpkgs en jeu.
+- `inputs` : les dépendances du flake. `nixos-26.05` est la branche stable de NixOS, qui reçoit les correctifs de sécurité pendant environ sept mois. disko partitionne, sops-nix déchiffre les [secrets](secrets.md), hermes-agent fournit le paquet et le module de l'agent du club.
+- `follows` : disko et sops-nix ont eux-mêmes besoin de nixpkgs ; on leur impose le nôtre, pour n'avoir qu'une seule version de nixpkgs en jeu. Hermes garde le sien (`nixos-unstable`), sur lequel ses paquets Python sont construits et testés ([ADR-0003](decisions/0003-hermes-service-natif.md)).
 
 ```nix
-outputs = { self, nixpkgs, disko, ... }: {
+outputs = { self, nixpkgs, disko, sops-nix, hermes-agent, ... }: {
   nixosConfigurations.evo-serv1 = nixpkgs.lib.nixosSystem {
     modules = [
       disko.nixosModules.disko
+      sops-nix.nixosModules.sops
+      hermes-agent.nixosModules.default
       ./hosts/evo-serv1/configuration.nix
       { system.configurationRevision = self.rev or self.dirtyRev or null; }
     ];
@@ -68,7 +75,7 @@ outputs = { self, nixpkgs, disko, ... }: {
 
 - `outputs` est une fonction : elle reçoit les inputs téléchargés (et `self`, le flake lui-même) et rend ce que le flake fournit.
 - `nixosConfigurations.<nom>` : une machine. Pour en ajouter une, on ajoute une entrée avec son propre dossier dans `hosts/`.
-- `modules` : le module de disko (qui ajoute les options `disko.*`), la configuration de la machine, et un module d'une ligne qui grave dans le système le commit dont il vient (suffixé `-dirty` si le clone avait des modifications non commitées). `nixos-version --configuration-revision` l'affiche.
+- `modules` : les modules des inputs (qui ajoutent les options `disko.*`, `sops.*`, `services.hermes-agent.*`), la configuration de la machine, et un module d'une ligne qui grave dans le système le commit dont il vient (suffixé `-dirty` si le clone avait des modifications non commitées). `nixos-version --configuration-revision` l'affiche.
 
 ### `flake.lock` : les versions figées
 
