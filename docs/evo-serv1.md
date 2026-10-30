@@ -2,7 +2,7 @@
 
 Le premier serveur du club : un Lenovo V530-15ICR qui tourne H24 au local. Il sert d'abord à [tester l'agent public](etape-1-agent-public.md), sans NAS ni sauvegarde. Sa configuration est dans [`hosts/evo-serv1/`](../hosts/evo-serv1/) ; sa (ré)installation dans [installer-evo-serv1.md](installer-evo-serv1.md).
 
-**Statut :** NixOS installé le 2026-10-28, [à l'essai](choix-du-systeme.md) ; aucun service encore déployé.
+**Statut :** NixOS installé le 2026-10-28 ; OmniRoute déployé, sans fournisseur branché ; agent du club prêt, désactivé.
 
 ## Matériel
 
@@ -39,7 +39,7 @@ Pendant l'[étape 1](etape-1-agent-public.md) :
 |---|---|
 | Système et services de base | ~1 Go |
 | Agent public (passerelle Discord + cron), service systemd natif ([ADR-0003](decisions/0003-hermes-service-natif.md)) | 0,5 à 1 Go, plafonné à 2 Go |
-| OmniRoute, instance dédiée à l'agent | ~0,5 Go |
+| OmniRoute, instance dédiée à l'agent, conteneur Podman rootless ([ADR-0006](decisions/0006-omniroute-podman-rootless.md), [administration](omniroute.md)) | 0,6 Go mesuré au démarrage, plafonné à 1 Gio |
 
 Total : **2 à 3 Go**. Ces chiffres viennent d'estimations et sont à mesurer une fois les services en place : c'est l'un des buts de l'étape.
 

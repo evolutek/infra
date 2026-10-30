@@ -30,6 +30,8 @@ hermes:
 
 se déclare `sops.secrets."hermes/env" = { };` et se lit à `config.sops.secrets."hermes/env".path`. Un secret se passe toujours par ce chemin, jamais par sa valeur : une valeur passée à Nix finit dans `/nix/store`, lisible par tous.
 
+Un secret appartient à `root` par défaut. Un service qui le lit sous un autre compte le déclare avec `owner`, par exemple un conteneur rootless, dont `podman` lit le fichier d'environnement sous l'utilisateur du conteneur : `sops.secrets."omniroute/env".owner = "omniroute";`.
+
 ## Ajouter un administrateur
 
 1. Ajouter sa clé SSH publique (`ssh-ed25519 AAAA…`, sans commentaire) dans `keys:` de `.sops.yaml`, et son alias dans chaque `key_groups` concerné.
