@@ -2,7 +2,7 @@
 
 La procédure suivie pour préparer [`evo-serv1`](evo-serv1.md) : BIOS, effacement des disques, installation de NixOS, inscription du TPM. À suivre pour réinstaller cette machine ou préparer la seconde (même modèle).
 
-**Statut :** installé le 2026-10-28, étapes 1 à 7 faites dans cet ordre. Reste à faire : mot de passe administrateur du BIOS, Secure Boot avec lanzaboote.
+**Statut :** installé le 2026-10-28, étapes 1 à 8 faites dans cet ordre. Reste à faire : mot de passe administrateur du BIOS, Secure Boot avec lanzaboote.
 
 ## 1. Mettre à jour le BIOS
 
@@ -161,3 +161,18 @@ Depuis la session live, avec une copie de ce dépôt dans `~/infra`. Les command
    ```
 
 Vérifié le 2026-10-28 : les trois volumes s'ouvrent seuls, sept montages en place, swap zram de 3,8 Go, aucune unité en échec.
+
+## 8. Rejoindre le tailnet du club
+
+Pour la maintenance à distance ([ADR-0005](decisions/0005-acces-distance-tailscale.md)). Le service est déjà dans la configuration ; il reste à inscrire la machine, une seule fois :
+
+1. Sur la machine :
+   ```sh
+   sudo tailscale up --hostname=evo-serv1
+   ```
+   La commande affiche un lien de connexion à usage unique.
+2. Ouvrir ce lien, connecté avec le compte Google de l'association. La machine apparaît dans la console Tailscale.
+3. Dans la console, sur la machine : **⋯ → Disable key expiry**. Sans ça, elle sort du tailnet au bout de 180 jours.
+4. Depuis un poste du tailnet : `ssh grand-conseil@evo-serv1` doit répondre.
+
+L'inscription est gardée dans `/var/lib/tailscale` : elle survit aux redémarrages et aux `switch`, pas à une réinstallation. Après une réinstallation, retirer l'ancienne machine de la console avant de refaire ces étapes.

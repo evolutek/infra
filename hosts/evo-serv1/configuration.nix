@@ -4,6 +4,7 @@
     ./disko.nix
     ./hardware.nix
     ../../modules/services/hermes.nix
+    ../../modules/services/tailscale.nix
   ];
 
   # Decrypted at boot with the age key derived from the SSH host key.
