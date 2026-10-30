@@ -17,6 +17,20 @@ Mettre un service en conteneur ne rend donc pas les mises à jour de l'hôte inu
 - **Système de fichiers en lecture seule**, sauf les volumes de données du service.
 - **Images à jour** : les bibliothèques des images ont leurs propres failles ; elles se reconstruisent régulièrement, indépendamment des mises à jour de l'hôte.
 
+## Règles des services natifs
+
+Un service lancé directement par systemd, sans conteneur (comme Hermes, [ADR-0003](decisions/0003-hermes-service-natif.md)), suit les mêmes règles, traduites en options de son unité :
+
+| Règle des conteneurs | Option systemd |
+|---|---|
+| Utilisateur non root | utilisateur système dédié, sans mot de passe ni clé SSH |
+| Capabilities retirées, `no-new-privileges` | `CapabilityBoundingSet=` vide, `NoNewPrivileges=true`, `RestrictSUIDSGID=true` |
+| Système de fichiers en lecture seule | `ProtectSystem=strict` et `ReadWritePaths=` limité à ses données ; `ProtectHome=true` |
+| Pas d'accès au noyau | `ProtectKernel*`, `ProtectControlGroups`, `PrivateDevices`, `SystemCallFilter=@system-service` |
+| Ressources bornées | `MemoryMax=` |
+
+`systemd-analyze security <unité>` note le résultat. Un processus que le service lance hors de son unité (par `systemd-run`) n'hérite pas de ces options : il faut le savoir et le limiter autrement.
+
 ## Critères pour choisir le système
 
 Sur un hôte qui fait surtout tourner des conteneurs, le système compte par la façon dont il applique ses correctifs.

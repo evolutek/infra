@@ -14,7 +14,7 @@ Les serveurs de l'association Evolutek et les services qu'ils hébergent, décri
 
 | Service | Machine | État | Suivi |
 |---|---|---|---|
-| Agent public du club ([Hermes Agent](https://github.com/NousResearch/hermes-agent)) | `evo-serv1` | prévu | [EvoluBot](https://github.com/evolutek/EvoluBot), epic [#7](https://github.com/evolutek/EvoluBot/issues/7) |
+| Agent public du club ([Hermes Agent](https://github.com/NousResearch/hermes-agent)) | `evo-serv1` | [module](modules/services/hermes.nix) prêt, désactivé en attendant OmniRoute ([EvoluBot#9](https://github.com/evolutek/EvoluBot/issues/9)) ; choix : [ADR-0003](docs/decisions/0003-hermes-service-natif.md) | [EvoluBot](https://github.com/evolutek/EvoluBot), epic [#7](https://github.com/evolutek/EvoluBot/issues/7) |
 | Gestionnaire de mots de passe | hors de l'étape 1 | à choisir avec le bureau | issue #154 du vault du club (privé) |
 
 ## Organisation
@@ -24,6 +24,7 @@ Les serveurs de l'association Evolutek et les services qu'ils hébergent, décri
 | `flake.nix`, `flake.lock` | point d'entrée et versions figées de nixpkgs |
 | `hosts/<machine>/` | ce qui est propre à une machine : disques (disko), matériel, configuration |
 | `modules/services/<service>.nix` | un service, activable sur n'importe quelle machine |
+| `secrets/<machine>.yaml`, `.sops.yaml` | secrets chiffrés d'une machine, et qui peut les déchiffrer |
 | `docs/` | [étape en cours](docs/etape-1-agent-public.md), [choix du système](docs/choix-du-systeme.md), fiches des machines, procédures, [sécurité de l'hôte](docs/securite-hote.md), [décisions](docs/decisions/) |
 
 Une machine porte un nom neutre (`evo-serv1`, `evo-serv2`…), jamais celui d'un service : un service peut changer de machine sans que rien ne soit renommé.
@@ -42,7 +43,7 @@ Le nom d'hôte choisit la configuration (`nixosConfigurations.<nom>`). En cas de
 
 ## Secrets
 
-Aucun secret dans ce dépôt public. Les secrets des services passeront par [sops-nix](https://github.com/Mic92/sops-nix), chiffrés. Les règles complètes sont dans [AGENTS.md](AGENTS.md).
+Aucun secret en clair dans ce dépôt public : ils sont chiffrés par [sops-nix](https://github.com/Mic92/sops-nix) dans `secrets/`, pour chaque machine et chaque administrateur. Les modifier, ajouter un administrateur : [secrets.md](docs/secrets.md). Les règles complètes sont dans [AGENTS.md](AGENTS.md).
 
 ## Licence
 
