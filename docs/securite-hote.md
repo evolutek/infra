@@ -46,5 +46,6 @@ Sur un hôte qui fait surtout tourner des conteneurs, le système compte par la 
 ## Accès et chiffrement
 
 - **SSH par clé uniquement** : ni mot de passe, ni connexion root. Les comptes n'existent que par la configuration (`users.mutableUsers = false`).
+- **Aucun port ouvert vers Internet** : la maintenance à distance passe par le tailnet du club, en connexions sortantes, sans demande d'ouverture de port au routeur ([ADR-0005](decisions/0005-acces-distance-tailscale.md), [schéma](schemas/acces-distants.png)).
 - **Disques chiffrés** par LUKS, déverrouillés par le TPM, avec une clé de secours hors machine : [ADR-0002](decisions/0002-disques-evo-serv1.md).
 - **Séparation des dépôts** : l'agent du club propose ses changements par PR sur EvoluBot, jamais sur ce dépôt. Un agent détourné ne peut donc pas modifier la configuration de la machine qui le fait tourner.

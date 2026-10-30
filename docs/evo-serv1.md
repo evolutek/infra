@@ -56,4 +56,5 @@ Envisagé ensuite, si la machine garde ce rôle : serveurs MCP de l'agent, enreg
 - **Reprise après coupure** : le BIOS est réglé sur *Power On* après une coupure de courant, et le TPM déverrouille les disques sans personne.
 - **Consommation** : à mesurer au wattmètre, au repos et en charge.
 - **Onduleur** : facultatif, une coupure pendant une mise à jour ne casse pas le système ([ADR-0001](decisions/0001-nixos.md)).
-- **À définir** : emplacement au local (ventilation, accès au réseau) et accès à distance pour la maintenance, qui dépend de l'autorisation de la Forge.
+- **Accès à distance** : par le tailnet du club, `ssh grand-conseil@evo-serv1` ([ADR-0005](decisions/0005-acces-distance-tailscale.md)) ; le SSH reste ouvert sur le réseau local en secours. L'autorisation de La Forge est demandée en parallèle.
+- **Emplacement** : au local du club, en Ethernet, à partir du 2026-10-29. Ventilation à surveiller.
