@@ -3,7 +3,11 @@
   imports = [
     ./disko.nix
     ./hardware.nix
+    ../../modules/services/hermes.nix
   ];
+
+  # Decrypted at boot with the age key derived from the SSH host key.
+  sops.defaultSopsFile = ../../secrets/evo-serv1.yaml;
 
   networking.hostName = "evo-serv1";
 
