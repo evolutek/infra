@@ -1,6 +1,6 @@
 # infra
 
-Les serveurs de l'association Evolutek et les services qu'ils hébergent, décrits en [NixOS](https://nixos.org) : chaque machine se reconstruit à l'identique depuis ce dépôt. Nouveau sur NixOS : commencer par [comprendre NixOS avec ce dépôt](docs/comprendre-nixos.md).
+Les serveurs de l'association Evolutek et les services qu'ils hébergent, décrits en [NixOS](https://nixos.org) : chaque machine se reconstruit à l'identique depuis ce dépôt. Nouveau sur NixOS : commencer par [comprendre NixOS avec ce dépôt](docs/comprendre-nixos.md). Participer, devenir administrateur : [participer](docs/participer.md).
 
 **Où on en est :** [étape 1, tester l'agent public](docs/etape-1-agent-public.md) sur une seule machine, sans NAS ni sauvegarde. NixOS y est à l'essai : le système définitif se [décide par un vote](docs/choix-du-systeme.md).
 
