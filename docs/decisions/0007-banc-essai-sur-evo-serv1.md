@@ -37,6 +37,6 @@ Le service est décrit dans [`modules/services/bench.nix`](../../modules/service
 ### Consequences
 - Good, because le banc avance sans dépendre du poste de quelqu'un, et le résultat est relisible et reproductible par ce dépôt.
 - Bad, because une faille de `bubblewrap` ou du noyau donnerait au code d'un modèle un accès à la machine sous l'utilisateur `bench`, voire plus.
-- Bad, because le service a besoin de créer des espaces de noms et de monter `/proc` : il se passe donc de `RestrictNamespaces` et de `ProtectKernelTunables`, et sa note `systemd-analyze security` est moins bonne que celle de Hermes.
+- Bad, because le service a besoin de créer des espaces de noms et de monter `/proc` : il se passe donc de `RestrictNamespaces`, `ProtectKernelTunables`, `ProtectKernelLogs` et `ProtectHostname`, et sa note `systemd-analyze security` est moins bonne que celle de Hermes.
 - Bad, because `npx` télécharge promptfoo depuis npm au premier lancement : la version est fixée, pas son contenu. Le paquet de nixpkgs est trop ancien pour garder la version avec laquelle le banc a commencé.
 - Neutral: le banc consomme de la mémoire et les quotas des fournisseurs ; à couper ou réduire quand Hermes s'active ([#6](https://github.com/evolutek/infra/issues/6)).

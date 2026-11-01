@@ -46,13 +46,12 @@ in
       RestrictSUIDSGID = true;
       LockPersonality = true;
       ProtectClock = true;
-      ProtectHostname = true;
       ProtectKernelModules = true;
-      ProtectKernelLogs = true;
       ProtectControlGroups = true;
       SystemCallArchitectures = "native";
-      # @mount and the absence of RestrictNamespaces and ProtectKernelTunables are for bwrap,
-      # which runs the code written by the models: it mounts a fresh /proc in its own namespaces.
+      # bwrap, which runs the code written by the models, mounts a fresh /proc in its own namespaces. The kernel
+      # refuses it if /proc is partly masked, hence no ProtectKernelLogs, ProtectKernelTunables or ProtectHostname;
+      # it also needs @mount and no RestrictNamespaces. Without them every code case would score 0 silently.
       SystemCallFilter = [ "@system-service" "@mount" ];
       MemoryMax = "3G";
       TasksMax = 512;
