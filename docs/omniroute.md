@@ -86,6 +86,17 @@ curl -s https://hub.docker.com/v2/repositories/diegosouzapw/omniroute/tags/<vers
 
 Avant de passer à une version, lire ses notes et les [avis de sécurité](https://github.com/diegosouzapw/OmniRoute/security/advisories) de l'amont. Après le déploiement : `systemctl status podman-omniroute` et `journalctl -u podman-omniroute`.
 
+## Suivre le banc d'essai
+
+Le banc d'essai des modèles passe par cette instance avec sa propre clé ; pourquoi sur cette machine : [ADR-0007](decisions/0007-banc-essai-sur-evo-serv1.md). Il ne démarre pas tant que son journal n'existe pas, pour ne pas dépenser les quotas deux fois.
+
+```sh
+systemctl status bench
+journalctl -u bench -f
+```
+
+Le fonctionnement du banc est décrit dans [son README](https://github.com/evolutek/EvoluBot/blob/docs/llm-benchmark/bench/README.md). Pour changer la version des épreuves, modifier le commit de l'entrée `evolubot` dans `flake.nix`.
+
 ## Commandes utiles
 
 Le conteneur appartient à `omniroute`, pas à root : `podman` se lance sous ce compte.
