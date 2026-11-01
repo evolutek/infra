@@ -13,6 +13,12 @@ in
   };
   users.groups.bench = { };
 
+  environment.systemPackages = [
+    (pkgs.writeShellScriptBin "banc" ''
+      exec sudo -u bench env BENCH_RESULTATS=/srv/bench/resultats ${python}/bin/python3 ${evolubot}/bench/lancer.py "$@"
+    '')
+  ];
+
   systemd.tmpfiles.rules = [ "d /srv/bench 0700 bench bench -" ];
 
   systemd.services.bench = {
