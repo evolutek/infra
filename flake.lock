@@ -20,6 +20,23 @@
         "type": "github"
       }
     },
+    "evolubot": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793629664,
+        "narHash": "sha256-fQFIf0TZ8sN8uUCNfOaW4F4tjDDhTu1TprkxDFlY5CI=",
+        "owner": "evolutek",
+        "repo": "EvoluBot",
+        "rev": "afc3f6d64718e2687ad63b4bf314b3d495a7f98e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "evolutek",
+        "repo": "EvoluBot",
+        "rev": "afc3f6d64718e2687ad63b4bf314b3d495a7f98e",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -192,6 +209,7 @@
     "root": {
       "inputs": {
         "disko": "disko",
+        "evolubot": "evolubot",
         "hermes-agent": "hermes-agent",
         "nixpkgs": "nixpkgs_2",
         "sops-nix": "sops-nix"

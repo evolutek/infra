@@ -13,10 +13,16 @@
     };
     # No follows: Hermes builds its Python set from its own nixos-unstable pin.
     hermes-agent.url = "github:NousResearch/hermes-agent";
+    # The benchmark's suite; pinned on the commit its results are measured with.
+    evolubot = {
+      url = "github:evolutek/EvoluBot/afc3f6d64718e2687ad63b4bf314b3d495a7f98e";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, disko, sops-nix, hermes-agent, ... }: {
+  outputs = { self, nixpkgs, disko, sops-nix, hermes-agent, evolubot, ... }: {
     nixosConfigurations.evo-serv1 = nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit evolubot; };
       modules = [
         disko.nixosModules.disko
         sops-nix.nixosModules.sops
