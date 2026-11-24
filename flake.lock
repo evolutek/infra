@@ -23,17 +23,17 @@
     "evolubot": {
       "flake": false,
       "locked": {
-        "lastModified": 1795511269,
-        "narHash": "sha256-Iwd9oobhoPgJ3aMaj9VXH2NIONaNtendRmIT7oNAmDI=",
+        "lastModified": 1795517555,
+        "narHash": "sha256-CM2ng25BdjD9v1SHn5NJpNd+44LUL+wmrMaoxJqEngQ=",
         "owner": "evolutek",
         "repo": "EvoluBot",
-        "rev": "2ef76d9d0cf377e8d58df4ae91549110a48aaf54",
+        "rev": "2cf65e51c46f1e7b77cc223467ff0aefde17da33",
         "type": "github"
       },
       "original": {
         "owner": "evolutek",
         "repo": "EvoluBot",
-        "rev": "2ef76d9d0cf377e8d58df4ae91549110a48aaf54",
+        "rev": "2cf65e51c46f1e7b77cc223467ff0aefde17da33",
         "type": "github"
       }
     },
