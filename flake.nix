@@ -15,7 +15,7 @@
     hermes-agent.url = "github:NousResearch/hermes-agent";
     # The benchmark's suite; pinned on the commit its results are measured with.
     evolubot = {
-      url = "github:evolutek/EvoluBot/b5ca7daec5db1b0173bffc51a1391fc26a57b7f1";
+      url = "github:evolutek/EvoluBot/2ef76d9d0cf377e8d58df4ae91549110a48aaf54";
       flake = false;
     };
   };
