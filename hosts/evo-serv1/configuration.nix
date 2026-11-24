@@ -3,6 +3,7 @@
   imports = [
     ./disko.nix
     ./hardware.nix
+    ../../modules/services/bench.nix
     ../../modules/services/hermes.nix
     ../../modules/services/omniroute.nix
     ../../modules/services/tailscale.nix

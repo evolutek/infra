@@ -41,7 +41,9 @@ Pendant l'[étape 1](etape-1-agent-public.md) :
 | Agent public (passerelle Discord + cron), service systemd natif ([ADR-0003](decisions/0003-hermes-service-natif.md)) | 0,5 à 1 Go, plafonné à 2 Go |
 | OmniRoute, instance dédiée à l'agent, conteneur Podman rootless ([ADR-0006](decisions/0006-omniroute-podman-rootless.md), [administration](omniroute.md)) | 0,6 Go mesuré au démarrage, plafonné à 1 Gio |
 
-Total : **2 à 3 Go**. Ces chiffres viennent d'estimations et sont à mesurer une fois les services en place : c'est l'un des buts de l'étape.
+S'y ajoute, le temps qu'il finisse, le [banc d'essai des modèles](decisions/0007-banc-essai-sur-evo-serv1.md), plafonné à 3 Gio.
+
+Total : **2 à 3 Go**, hors banc d'essai. Ces chiffres viennent d'estimations et sont à mesurer une fois les services en place : c'est l'un des buts de l'étape.
 
 Envisagé ensuite, si la machine garde ce rôle : serveurs MCP de l'agent, enregistreur des réunions vocales, transcription ([EvoluBot#16](https://github.com/evolutek/EvoluBot/issues/16)).
 
